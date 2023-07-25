@@ -1,0 +1,15 @@
+{
+  "name": "auto_test_framework",
+  "version": "1.0.0",
+  "description": "end to end test for a vulnerable web app",
+  "main": "index.js",
+  "devDependencies": {
+    "cypress": "^12.17.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "cypress open"
+  },
+  "author": "a-team_life",
+  "license": "ISC"
+}
