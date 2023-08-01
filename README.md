@@ -4,7 +4,7 @@ install `nvm` https://github.com/nvm-sh/nvm
 
 `nvm install npm` `nvm install node` to install `nvm` and `node` 
 
-append `--lst` for latest LTS version
+append `--lts` for latest LTS version
 
 ### Javascript Basic
 

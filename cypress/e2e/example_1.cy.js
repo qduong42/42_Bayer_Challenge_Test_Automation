@@ -42,10 +42,19 @@ describe('test case: XSS attack script', () => {
 	it ('XSS reflection', () => {
 		cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/reflected_xss?foobar=<script>alert("XSS attack!");</script>');
 		
+		
 		cy.contains('The following text is reflected from the url: ').should('be.visible');
 		
 		cy.on('window:alert', (message) => {
 			expect(message).to.equal('XSS attack!');
 		})
+		cy.log("script executed!");
+	})
+})
+
+describe('test case: test link 2', () => {
+	let link = encodeURIComponent('"><script>alert("XSS attack!");</script>')
+	it ('break the class', () => {
+		cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/reflected_xss_2?foo=' + link);
 	})
 })
