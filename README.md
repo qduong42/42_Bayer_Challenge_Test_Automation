@@ -25,3 +25,5 @@ using npx: `npx cypress open`
 https://owasp.org/www-community/attacks/xss/
 
 `<script>alert('XSS attack!');</script>`
+
+https://www.youtube.com/watch?v=EoaDgUgS6QA
