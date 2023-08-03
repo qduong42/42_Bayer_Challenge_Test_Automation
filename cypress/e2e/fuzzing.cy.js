@@ -1,6 +1,8 @@
 
 /// <reference types="cypress" />
 
+/* This function is randomly generating 'length'
+  of symbols in order to try and break the page*/
 function generateRandomText(length) {
   const characters = '!?@#$^&*()_+';
   let randomText = '';
@@ -12,6 +14,8 @@ function generateRandomText(length) {
   return randomText;
 }
 
+/* This is going to send 'n' requests until
+    it actually breaks the website */
 function makeRequest(n){
   let link = 'https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/fuzzing/fuzz.html' + generateRandomText(10);
   cy.request({
@@ -35,6 +39,7 @@ describe('Fuzzing', () => {
     cy.get(':nth-child(6) > a').click()
     cy.get('body').should('contain', 'Fuzzing is an important tool in penetration testing; the core idea is that by passing unexpected inputs to a server, you can get it to perform in potentially exploitable ways.');
   })
+
   it("Fuzzing attack", () => {
     makeRequest(50)
     cy.get('body').should('contain', 'Fuzzing is an important tool in penetration testing; the core idea is that by passing unexpected inputs to a server, you can get it to perform in potentially exploitable ways.');
