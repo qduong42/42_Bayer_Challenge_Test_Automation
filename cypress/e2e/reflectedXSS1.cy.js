@@ -77,3 +77,14 @@ describe('Test link "Reflected XSS Example 1"', () => {
    })
   })
 })
+
+describe("http request", () => {
+  it("http request", () => {
+    cy.request('GET', 'https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/reflected_xss', {
+      foobar: '123'
+    }).then((Response) => {
+      cy.log(Response)
+      expect(Response.status).to.equal(200)
+    })
+  })
+})
