@@ -9,7 +9,7 @@ describe('normal input', () => {
     const input = "test"
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/stored_xss')
     cy.get('input[name="stored_payload"]').type(input)
-    cy.get('[type="submit"').click()
+    cy.get('[type="submit"]').click()
     cy.get('body').contains(input)
   })
 })
