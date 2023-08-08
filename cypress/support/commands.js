@@ -23,3 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+function generateRandomText(length) {
+	const characters = '!?@#$^&*()_+';
+	let randomText = '';
+  
+	for (let i = 0; i < length; i++) {
+	  const randomIndex = Math.floor(Math.random() * characters.length);
+	  randomText += characters[randomIndex];
+	}
+	return randomText;
+  }
+
+Cypress.Commands.add("fuzz_attack", (url, n) => {
+	let link = url + generateRandomText(10);
+  cy.request({
+    method: 'GET',
+    url: link,
+    failOnStatusCode: false
+  }).then((Response) => {
+    if (Response.status == 500)
+    {
+      cy.visit(link, {failOnStatusCode: false});
+    }
+    else if (n > 1)
+      cy.fuzz_attack(url, n-1);
+  })
+});
