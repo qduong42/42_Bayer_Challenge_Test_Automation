@@ -74,4 +74,5 @@ Cypress.Commands.add("a_test", (element, url) => {
     cy.visit(href);
     cy.url().should('include', url);
   })
+  cy.go('back')
 })
