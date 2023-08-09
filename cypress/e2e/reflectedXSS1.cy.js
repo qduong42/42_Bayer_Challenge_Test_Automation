@@ -60,6 +60,10 @@ describe('Test link "Reflected XSS Example 1"', () => {
       cy.get('body').contains(decodedQueryString);
     });
   })
+
+  it('Fuzzing', () => {
+    cy.fuzz_attack('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/reflected_xss', 50);
+  })
   //from the main page it opens the link to the XSS 1
   //then it injects an alert simply by changing the link's value
   //then we expect to not have an alert??(or expect to have(we did't decide yet))

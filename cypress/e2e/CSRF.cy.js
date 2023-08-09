@@ -15,6 +15,10 @@ describe('CSRF testing', () => {
     cy.get('body').contains("999999999911120302104210491204021")
   })
 
+  it('Fuzzing', () => {
+    cy.fuzz_attack('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/csrf', 50);
+  })
+
   /*This one is launching an CSRF attack, opening an html file
   locally stored in a folder 'misc'*/
   it('CSRF attack (local)', () => {

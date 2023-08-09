@@ -42,9 +42,9 @@ Cypress.Commands.add("fuzz_attack", (url, n) => {
     url: link,
     failOnStatusCode: false
   }).then((Response) => {
-    if (Response.status == 500)
+    if (Response.status != 200 && Response.status != 404)
     {
-      cy.visit(link, {failOnStatusCode: false});
+      cy.visit(link, {failOnStatusCode: true});
     }
     else if (n > 1)
       cy.fuzz_attack(url, n-1);
