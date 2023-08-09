@@ -1,5 +1,11 @@
 describe("http request", () => {
-  it.only("http request", () => {
+  it("visit", () => {
+    cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/auth_bypass')
+  })
+  it("Fuzzing", () => {
+    cy.fuzz_attack('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/auth_bypass', 50)
+  })
+  it("http request", () => {
     cy.intercept('GET', '*.js').as('get_js');
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/auth_bypass')
     cy.wait('@get_js')
