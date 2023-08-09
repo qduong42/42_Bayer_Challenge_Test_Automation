@@ -5,7 +5,7 @@ describe('visit the web app', () => {
 })
 
 describe('get into first test url', () => {
-	it('visit', () => {
+	it.only('visit', () => {
 		cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/');
 		
 		// click!
@@ -67,7 +67,7 @@ describe('local site', () => {
 })
 
 describe("http request", () => {
-  it.only("http request", () => {
+  it("http request", () => {
     cy.intercept('GET', '*.js').as('get_js');
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/auth_bypass')
     cy.wait('@get_js')
