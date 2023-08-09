@@ -27,3 +27,7 @@ https://owasp.org/www-community/attacks/xss/
 `<script>alert('XSS attack!');</script>`
 
 https://www.youtube.com/watch?v=EoaDgUgS6QA
+
+## Useful link
+
+https://github.com/cypress-io/cypress-example-recipes/tree/master/examples
