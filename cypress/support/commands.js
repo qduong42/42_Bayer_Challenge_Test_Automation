@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -50,3 +51,27 @@ Cypress.Commands.add("fuzz_attack", (url, n) => {
       cy.fuzz_attack(url, n-1);
   })
 });
+
+//Only works for same domain
+Cypress.Commands.add("a_test", (element, url) => {
+  //verify the href, don't click through
+  cy.get(element).should('have.attr', 'href')
+  .and('include', url)
+
+  cy.url().then((newurl) => {
+    cy.get(element).should('have.prop', 'href')
+    .and('equal', newurl + url.substring(1))
+  })
+
+  //click to the new page
+  cy.get(element).click()
+  cy.url().should('include', url)
+  cy.go('back')
+
+  //visit extracting the link
+  cy.get(element).then(($a) => {
+    const href = $a.prop('href')
+    cy.visit(href);
+    cy.url().should('include', url);
+  })
+})
