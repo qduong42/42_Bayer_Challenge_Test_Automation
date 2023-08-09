@@ -13,6 +13,16 @@ function changeAfterFoobar(inputString, newValue) {
 }
 
 describe('Test link "Reflected XSS Example 2"', () => {
+  it('Visit website', () => {
+    cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/')
+    cy.get(':nth-child(1) > a').click()
+    cy.get('body').contains("The following text is reflected from the url:")
+  })
+
+  it('Fuzzing', () => {
+    cy.fuzz_attack('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/reflected_xss_2', 50)
+  })
+
   //Inject an XSS attack by closing the div class with (">\")infront of the injection
   it('XSS attack', () => {
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/')
