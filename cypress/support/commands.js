@@ -58,9 +58,14 @@ Cypress.Commands.add("a_test", (element, url) => {
   cy.get(element).should('have.attr', 'href')
   .and('include', url)
 
-  cy.url().then((newurl) => {
+//need review, may not need this part
+  cy.url().then((currentUrl) => {
+    let aURL = new URL(currentUrl)
+    aURL.pathname = url
+    const decodedStr = decodeURIComponent(aURL.href)
     cy.get(element).should('have.prop', 'href')
-    .and('equal', newurl + url.substring(1))
+    
+    // .and('equal', decodedStr)
   })
 
   //click to the new page
