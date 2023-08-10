@@ -66,6 +66,13 @@ describe('local site', () => {
   })
 })
 
+describe('test business level', () => {
+  it.only('business', () => {
+    cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com');
+    cy.a_test(':nth-child(3) > a', '/reflected_xss_3?foo=bar')
+  })
+})  
+
 describe("http request", () => {
   it("http request", () => {
     cy.intercept('GET', '*.js').as('get_js');
