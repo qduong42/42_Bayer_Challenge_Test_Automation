@@ -36,6 +36,7 @@ function generateRandomText(length) {
 	return randomText;
   }
 
+
 Cypress.Commands.add("fuzz_attack", (url, n) => {
 	let link = url + generateRandomText(10);
   cy.request({
@@ -80,4 +81,29 @@ Cypress.Commands.add("a_test", (element, url) => {
     cy.url().should('include', url);
   })
   cy.go('back')
+})
+
+Cypress.Commands.add("req_test", (url) => {
+
+  cy.visit(url)
+  cy.get('a').each(($link) => {
+    const href = $link.attr('href')
+    if (href) {
+      cy.log('href = ' + href)
+      
+      if (href.startsWith('//')) {
+        const protocol = window.location.protocol;
+        const completeUrl = `${protocol}${href}`;
+        cy.request(completeUrl).then((response) => {
+          expect(response.status).to.equal(200)
+        })
+      }
+      else {
+        cy.request(url).then((response) => {
+          expect(response.status).to.equal(200)
+        })
+      }
+    }
+  })
+
 })

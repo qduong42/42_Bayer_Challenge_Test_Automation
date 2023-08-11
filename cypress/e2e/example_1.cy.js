@@ -1,11 +1,19 @@
+import { readJsFile } from "../support/intercept"
+
 describe('visit the web app', () => {
   it('visit', () => {
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/')
   })
 })
 
+describe('test', () => {
+  it.only('check', () => {
+    cy.req_test('https://en.wikipedia.org/wiki/Main_Page')
+  })
+})
+
 describe('get into first test url', () => {
-	it.only('visit', () => {
+	it('visit', () => {
 		cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com/');
 		
 		// click!
@@ -67,7 +75,7 @@ describe('local site', () => {
 })
 
 describe('test business level', () => {
-  it.only('business', () => {
+  it('business', () => {
     cy.visit('https://app-web-berlin42-50e7ace7d4d7.herokuapp.com');
     cy.a_test(':nth-child(3) > a', '/reflected_xss_3?foo=bar')
   })
