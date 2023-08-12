@@ -1,4 +1,6 @@
+/// <reference types="cypress" />
 import { readJsFile } from "../support/intercept"
+const fs = require('fs');
 
 describe('visit the web app', () => {
   it('visit', () => {
@@ -8,9 +10,15 @@ describe('visit the web app', () => {
 
 describe('test', () => {
   it.only('check', () => {
-    cy.req_test('https://en.wikipedia.org/wiki/Main_Page')
+    cy.fixture('wiki_list.json').then((data) => {
+      const list = data.list
+      list.forEach((item) => {
+        cy.wiki_search(item)
+      });
+    })
   })
 })
+
 
 describe('get into first test url', () => {
 	it('visit', () => {

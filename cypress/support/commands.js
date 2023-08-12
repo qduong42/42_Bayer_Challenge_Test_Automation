@@ -107,3 +107,12 @@ Cypress.Commands.add("req_test", (url) => {
   })
 
 })
+
+Cypress.Commands.add('wiki_search', (keyword) => {
+  cy.visit('https://en.wikipedia.org/wiki/Main_Page')
+  cy.get('#searchInput').click()
+  cy.get('.cdx-text-input__input').type(keyword)
+  cy.get('.cdx-search-input > .cdx-button').click()
+  cy.get('.mw-search-nonefound').should('not.exist');
+  cy.get('.searchdidyoumean').should('not.exist')
+})
