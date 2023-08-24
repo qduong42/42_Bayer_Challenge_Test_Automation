@@ -14,7 +14,7 @@ describe('wiki_search', () => {
     cy.req_test('https://en.wikipedia.org/wiki/Main_Page')
   })
 
-  it.only('check result', () => {
+  it('check result', () => {
     cy.fixture('wiki_list.json').then((data) => {
       const list = data.list
       list.forEach((item) => {

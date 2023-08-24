@@ -33,12 +33,14 @@ function generateRandomText(length) {
 	  const randomIndex = Math.floor(Math.random() * characters.length);
 	  randomText += characters[randomIndex];
 	}
+  if (randomText[0] == '?' || randomText[0] == '#' || randomText[0] == '_')
+    return generateRandomText(length);
 	return randomText;
   }
 
 
 Cypress.Commands.add("fuzz_attack", (url, n) => {
-	let link = url + generateRandomText(10);
+	let link = url + generateRandomText(20);
   cy.request({
     method: 'GET',
     url: link,
